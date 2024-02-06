@@ -1,11 +1,6 @@
 import React from "react";
 
-const FoodInput = () => {
-
-    function handleChange(event){
-        console.log(event);
-        console.log(event.target.value);
-    }
+const FoodInput = ({ handleonKeyDown }) => {
   return (
     <div>
       <div className="row justify-content-center">
@@ -14,8 +9,8 @@ const FoodInput = () => {
             type="text"
             className="form-control"
             placeholder="Enter Food Item here"
-            onChange={(event) => {
-             handleChange(event)
+            onKeyDown={(event) => {
+              handleonKeyDown(event);
             }}
           />
         </div>
