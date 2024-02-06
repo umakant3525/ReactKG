@@ -1,6 +1,8 @@
 .listItem {
-    color: rgb(251, 84, 0);
-    font-size: large;
-    text-align: center;
-  }
-  
+  font-size: large;
+  text-align: start;
+}
+
+.mybtn{
+float:right;
+}
