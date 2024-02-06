@@ -2,7 +2,7 @@ import React from "react";
 
 const FoodInput = () => {
 
-    function handleChange(evant){
+    function handleChange(event){
         console.log(event);
         console.log(event.target.value);
     }

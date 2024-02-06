@@ -6,7 +6,10 @@ import FoodInput from "./FoodInput";
 
 const App = () => {
   const foodItems = ["Dal1", "Chawal2", "Roti3", "Puri4", "Varan5", "Bhat"];
-  // const foodItems = [];
+
+  function onClickEvent(item, index) {
+    console.log(`${item} item is bought with index ${index}`);
+  }
 
   return (
     <>
@@ -17,7 +20,7 @@ const App = () => {
           {foodItems.length === 0 ? (
             <ErrorMsg />
           ) : (
-            <List foodItems={foodItems} />
+            <List foodItems={foodItems} onClickEvent={onClickEvent} />
           )}
         </div>
       </Container>

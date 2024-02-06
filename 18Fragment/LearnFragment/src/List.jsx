@@ -1,13 +1,7 @@
 import React from "react";
 import styles from "./List.module.css";
 
-const List = ({ foodItems }) => {
-  
-  function eventHandle(event, item, index) {
-    console.log(event)
-    console.log(`${item} item is bought with index ${index}`);
-  }
-
+const List = ({ foodItems, onClickEvent }) => {
   return (
     <div>
       <ul className="list-group">
@@ -18,7 +12,7 @@ const List = ({ foodItems }) => {
               <button
                 type="button"
                 className={`btn btn-success ${styles.mybtn}`}
-                onClick={(event) => eventHandle(event ,item, index)}
+                onClick={() => onClickEvent(item, index)}
               >
                 Buy
               </button>
