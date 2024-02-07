@@ -16,7 +16,9 @@ const AddTodo = ({ onNewItem }) => {
     setDate(event.target.value);
   };
 
-  function handleBtnClick() {
+  function handleBtnClick(event) {
+    console.log(event)
+    event.preventDefault();
     onNewItem(name, date);
     setName(" ");
     setDate(" ");
@@ -24,7 +26,7 @@ const AddTodo = ({ onNewItem }) => {
 
   return (
     <div>
-      <div className="row justify-content-center">
+      <form className="row justify-content-center"  onSubmit={handleBtnClick} >
         <div className="col-sm-4 mb-3">
           <input type="text" className="form-control" placeholder="Enter item" aria-label="Todo item" required value={name} onChange={handleName} />
         </div>
@@ -32,9 +34,9 @@ const AddTodo = ({ onNewItem }) => {
           <input type="date" className="form-control" value={date} onChange={handleDate} required />
         </div>
         <div className="col-sm-2 mb-3">
-          <button className="btn btn-primary btn-block" onClick={handleBtnClick}><BiAddToQueue/></button>
+          <button className="btn btn-primary btn-block" type='submit'><BiAddToQueue/></button>
         </div>
-      </div>
+      </form>
     </div>
   );
 };
