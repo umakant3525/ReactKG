@@ -1,32 +1,33 @@
-// TodoItemsStore.js
-import React, { createContext, useState } from "react";
+import React, { createContext, useReducer } from "react";
 
 const TodoItemsContext = createContext({});
-const initialTodoItems = [
-  {
-    Name: "TODO1",
-    Date: "10/10/1000"
-  },
-  {
-    Name: "TODO2",
-    Date: "20/10/2000"
+
+const todoReducer = (state, action) => {
+  switch (action.type) {
+    case "ADD_ITEM":
+      return [...state, action.payload];
+    case "DELETE_ITEM":
+      return state.filter(item => item.Name !== action.payload.itemName || item.Date !== action.payload.key);
+    default:
+      return state;
   }
-];
+};
 
 export const TodoItemsProvider = ({ children }) => {
-  const [todoItems, setTodoItems] = useState(initialTodoItems);
+  const [todoItems, dispatchTodoItems] = useReducer(todoReducer, [
+    {
+      Name: "UseReducer",
+      Date: "10/10/1000"
+    },
+  ]);
 
   const addNewItem = (itemName, itemDueDate) => {
-    setTodoItems([...todoItems, {
-      Name: itemName,
-      Date: itemDueDate
-    }]);
+    dispatchTodoItems({ type: "ADD_ITEM", payload: { Name: itemName, Date: itemDueDate } });
   };
 
   const deleteItem = ({ itemName, key }) => {
     console.log(`${key} id deleted with item ${itemName}`);
-    const updatedItems = todoItems.filter(item => item.Name !== itemName || item.Date !== key);
-    setTodoItems(updatedItems);
+    dispatchTodoItems({ type: "DELETE_ITEM", payload: { itemName, key } });
   };
 
   return (
@@ -36,4 +37,4 @@ export const TodoItemsProvider = ({ children }) => {
   );
 };
 
-export { TodoItemsContext, initialTodoItems };
+export { TodoItemsContext };
