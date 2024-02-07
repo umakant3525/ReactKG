@@ -1,40 +1,30 @@
-// AddTodo.js
-import React, { useState } from 'react';
+import React, { useRef } from 'react';
 import { BiAddToQueue } from "react-icons/bi";
 
-
-
 const AddTodo = ({ onNewItem }) => {
-  const [name, setName] = useState('');
-  const [date, setDate] = useState('');
-
-  const handleName = (event) => {
-    setName(event.target.value);
-  };
-
-  const handleDate = (event) => {
-    setDate(event.target.value);
-  };
+  const todoNameElement = useRef();
+  const todoDateElement = useRef();
 
   function handleBtnClick(event) {
-    console.log(event)
     event.preventDefault();
+    const name = todoNameElement.current.value;
+    const date = todoDateElement.current.value;
     onNewItem(name, date);
-    setName(" ");
-    setDate(" ");
+    todoNameElement.current.value = '';
+    todoDateElement.current.value = '';
   }
 
   return (
     <div>
-      <form className="row justify-content-center"  onSubmit={handleBtnClick} >
+      <form className="row justify-content-center" onSubmit={handleBtnClick}>
         <div className="col-sm-4 mb-3">
-          <input type="text" className="form-control" placeholder="Enter item" aria-label="Todo item" required value={name} onChange={handleName} />
+          <input type="text" className="form-control" placeholder="Enter item" aria-label="Todo item" required ref={todoNameElement} />
         </div>
         <div className="col-sm-3 mb-3">
-          <input type="date" className="form-control" value={date} onChange={handleDate} required />
+          <input type="date" className="form-control" required ref={todoDateElement} />
         </div>
         <div className="col-sm-2 mb-3">
-          <button className="btn btn-primary btn-block" type='submit'><BiAddToQueue/></button>
+          <button className="btn btn-primary btn-block" type='submit'><BiAddToQueue /></button>
         </div>
       </form>
     </div>
