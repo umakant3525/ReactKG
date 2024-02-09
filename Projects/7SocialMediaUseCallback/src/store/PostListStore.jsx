@@ -108,4 +108,9 @@ export default PostListProvider;
 // const sortArr = useMemo(arr.sort())
 // console.log(sortArr)
 // const sliceArr = useMemo(arr.slice())
-// console.log(sliceArr)
+// console.log(sliceArr)  
+
+//Learn about custom hooks 
+
+// const [value,toggle] = useToggle(true);
+// const [value,{on,off,toggel}] = useBoolean(true)
