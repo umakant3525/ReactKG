@@ -4,6 +4,7 @@ import React, { createContext, useReducer } from "react";
 export const PostListContext = createContext({
     postList: [],
     addPost: () => {},
+    addIntialPosts: () => {},
     deletePost: () => {},
 });
 
@@ -18,34 +19,22 @@ const postListReducer = (currentPostList, action) => {
             // Add the new post to the list
             newPostList.push(action.payload);
             return newPostList;
+        case "ADD_INITIAL_POSTS":
+            // Add the new post to the list
+            newPostList = action.payload.posts;
+            return newPostList;
         default:
             return currentPostList;
     }
 };
 
 const PostListProvider = ({ children }) => {
-    const defaultPostList = [
-        {
-            id: "1",
-            title: "Title 1",
-            body: "Going to Mumbai I am going to mumbaifor my hope mbjbd g xchjhvjbxvh",
-            reactions: 1,
-            userId: "usr-1",
-            tags: ["tag1", "tag2", "tag3"]
-        },
-        {
-            id: "2",
-            title: "Title 2",
-            body: "Going to Mumbai I am going to mumbaifor my hope mbjbd g xchjhvjbxvh",
-            reactions: 2,
-            userId: "usr-2",
-            tags: ["tag1", "tag2", "tag3", "tag4"]
-        }
-    ];
-
+  
+    // here we can add manually a data for the posts with our own api 
+    const defaultPostList = [];
     const [postList, dispatchPostList] = useReducer(postListReducer, defaultPostList);
 
-    const addPost = ( title, body, reactions, userId, tags) => {
+    const addPost = (title, body, reactions, userId, tags) => {
         console.log(`Post added: 
             Post ID: ${userId}
             Title: ${title}
@@ -58,12 +47,23 @@ const PostListProvider = ({ children }) => {
         dispatchPostList({
             type: "ADD_POST",
             payload: {
-                id:  userId,
+                id: userId,
                 title: title,
                 body: body,
                 reactions: reactions,
                 userId: userId,
                 tags: tags
+            }
+        });
+    };
+
+    const addIntialPosts = (posts) => {
+        console.log(`Initial posts added `);
+    
+        dispatchPostList({
+            type: "ADD_INITIAL_POSTS",
+            payload: {
+                posts
             }
         });
     };
@@ -79,7 +79,7 @@ const PostListProvider = ({ children }) => {
     };
 
     return (
-        <PostListContext.Provider value={{ postList, addPost, deletePost }}>
+        <PostListContext.Provider value={{ postList, addPost, deletePost, addIntialPosts }}>
             {children}
         </PostListContext.Provider>
     );

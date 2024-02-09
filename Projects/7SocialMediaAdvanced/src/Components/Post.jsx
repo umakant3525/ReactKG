@@ -11,7 +11,8 @@ const Post = ({ post }) => {
   const {deletePost} = useContext(PostListContext)
 
   return (
-    <div className={`card m-4 shadow-lg border border-${color}`}>
+    <div className={`col-lg-6 col-md-6 col-sm-12 mb-4`}>
+    <div className={`card  shadow-lg border border-${color}  `}>
       <div className={`card-header d-flex justify-content-between align-items-center bg-${color} text-white position-relative`}>
         <h5 className="mb-0">{post.title}</h5>
         <span className="position-absolute top-0 start-100 translate-middle p-2 btn " onClick={()=>deletePost(post.id)}>
@@ -39,6 +40,7 @@ const Post = ({ post }) => {
           </li>
         </ul>
       </div>
+    </div>
     </div>
   );
 };
