@@ -22,7 +22,7 @@ const PostList = () => {
             <div className="row m-4 p-4">
                 {postList.length === 0 ? (
                     <div className="col">
-                        <Msg onGetPostsClick={handleGetPostsClick}/>
+                        <Msg onGetPostsClick={handleGetPostsClick} />
                     </div>
                 ) : (
                     postList.map(post => (
