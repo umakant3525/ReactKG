@@ -1,13 +1,23 @@
 import React, { useState, useEffect } from 'react';
 
 const Time = () => {
+  const [currentTime, setCurrentTime] = useState(new Date());
 
-  let currentTime = new Date();
+  useEffect(() => {
+    console.log("Interval has been setup ")
+    const timerID = setInterval(() => {
+      setCurrentTime(new Date());
+    }, 1000);
+
+    return () => {clearInterval(timerID);
+    console.log("cancel the interval");
+    }
+  }, []);
 
   const timestring = currentTime.toLocaleTimeString();
   const datestring = currentTime.toLocaleDateString();
 
-  console.log(timestring)
+  console.log(timestring);
 
   return (
     <div className="text-center">
