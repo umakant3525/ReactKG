@@ -1,5 +1,6 @@
 // PostListStore.js
 import React, { createContext, useCallback, useReducer } from "react";
+import { useMemo } from "react";
 
 export const PostListContext = createContext({
     postList: [],
@@ -96,3 +97,15 @@ const PostListProvider = ({ children }) => {
 };
 
 export default PostListProvider;
+
+//When the thing about only data and value then useMemo is used 
+
+//example these are optimization techniques unnecessary calculations 
+
+// //suppose this is as prop or contextdata
+// const arr = [323,34543,432,43,54,876,23,54,9];
+
+// const sortArr = useMemo(arr.sort())
+// console.log(sortArr)
+// const sliceArr = useMemo(arr.slice())
+// console.log(sliceArr)
