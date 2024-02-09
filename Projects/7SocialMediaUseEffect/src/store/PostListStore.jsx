@@ -58,7 +58,7 @@ const PostListProvider = ({ children }) => {
     };
 
     const addIntialPosts = (posts) => {
-        console.log(`Initial posts added `);
+        console.log(`Initial post are added depend on server time `);
     
         dispatchPostList({
             type: "ADD_INITIAL_POSTS",
