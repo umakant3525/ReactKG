@@ -82,11 +82,13 @@ const CreatePost = () => {
   );
 };
 
+//action function get a data attribut on submission data attribute  as method ="POSt "
 export async function createPostAction(data) {
-  const formData = await data.request.formData();
-  const postData = Object.fromEntries(formData);
+  const formData = await data.request.formData();  //it collect overall data asyncronasly or use .then syntax 
+  const postData = Object.fromEntries(formData); //it collect the data in onject 
   postData.tags = postData.tags.split(" ");
-  console.log(postData);
+  console.log(`Collecting data from the form ${postData}`);
+  console.log(postData)
 
   fetch("https://dummyjson.com/posts/add", {
     method: "POST",
@@ -95,10 +97,13 @@ export async function createPostAction(data) {
   })
     .then((res) => res.json())
     .then((post) => {
-      console.log(post);
+      console.log(`send request to server to add data from the form ${postData}`);
+      console.log(postData)
+
     });
 
-  return redirect("/");
+    //redirect is from the router to page redirectin of the page 
+  return redirect("/"); 
 }
 
 export default CreatePost;
