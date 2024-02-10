@@ -4,6 +4,9 @@ const CreatePost = () => {
   //const { addPost } = useContext(PostList);
 
   return (
+
+    // react form router is router with less work 
+
     <Form method="POST" className="create-post">
       <div className="mb-3">
         <label htmlFor="userId" className="form-label">
@@ -11,6 +14,7 @@ const CreatePost = () => {
         </label>
         <input
           type="text"
+          // name attrubute is used for input purpose 
           name="userId"
           className="form-control"
           id="userId"
