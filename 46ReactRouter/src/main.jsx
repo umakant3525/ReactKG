@@ -5,6 +5,8 @@ import App from "./routes/App.jsx";
 import CreatePost, { createPostAction } from "./components/CreatePost.jsx";
 import PostList, { postLoader } from "./components/PostList.jsx";
 
+// this make the router value in the key value pair 
+// by the children we can make layout routing 
 const router = createBrowserRouter([
   {
     path: "/",
@@ -22,6 +24,7 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    {/* this is router provider for route  */}
+    <RouterProvider router={router} />  
   </React.StrictMode>
 );

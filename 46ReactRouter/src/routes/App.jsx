@@ -19,6 +19,7 @@ function App() {
         ></Sidebar>
         <div className="content">
           <Header></Header>
+          {/* this is for the routing layout  */}
           <Outlet />
           <Footer></Footer>
         </div>
